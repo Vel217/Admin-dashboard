@@ -17,11 +17,22 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  connection.query("SELECT * FROM users", (err, rows, fields) => {
-    if (err) res.send(err);
-    else res.send(rows);
+const query = async (sql) => {
+  return new Promise((resolve, reject) => {
+    connection.query(sql, (err, rows, fields) => {
+      if (err) reject(err);
+      else resolve(rows);
+    });
   });
+};
+
+app.get("/", async (req, res) => {
+  try {
+    const result = await query("SELECT * FROM users");
+    res.send(result);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
 app.listen(5001, () => {
