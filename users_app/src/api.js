@@ -58,7 +58,6 @@ export const signIn = async (email, password) => {
       "Content-Type": "application/json",
     },
     mode: "cors",
-    withCredentials: true,
     credentials: "include",
   });
   return response;
@@ -119,6 +118,19 @@ export const updateActivity = async (id) => {
     method: "POST",
     // mode: "cors",
     body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    credentials: "include",
+  });
+  return response;
+};
+
+export const logout = async () => {
+  const url = "http://localhost:5001/logout";
+  const response = await fetch(url, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },

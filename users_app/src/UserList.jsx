@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
-import { block, deleteId, getlist, unblock } from "./api";
+import { block, deleteId, getlist, logout, unblock } from "./api";
 import { useNavigate, useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import Button from "./components/Button";
@@ -72,9 +72,13 @@ export default function UserList() {
     });
   };
 
-  const logout = () => {
-    navigate("/");
-    document.cookie = "session= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+  const clickLogout = () => {
+    logout().then((res) => {
+      if (res.status === 200) {
+        navigate("/");
+      }
+    });
+    // document.cookie = "session= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     // document.cookie   session=${sessionID};Domain=localhost;Path=/; SameSite=None; Secure;
     // function delete_cookie( name, path, domain ) {
     //   if( get_cookie( name ) ) {
@@ -166,7 +170,7 @@ export default function UserList() {
           </button>
         </div>
         <div className="inline-flex">
-          <Button type="button" title="logout" onClick={logout}></Button>
+          <Button type="button" title="logout" onClick={clickLogout}></Button>
         </div>
       </div>
       <div className="mt-8 flow-root">
