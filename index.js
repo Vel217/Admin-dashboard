@@ -166,7 +166,7 @@ app.post("/signIn", async (req, res) => {
 
     res.set(
       "Set-Cookie",
-      `session=${sessionID};Domain=localhost;Path=/; SameSite=None; Secure;`
+      `session=${sessionID};Domain=${process.env.REACT_APP_FRONTEND_URL};Path=/; SameSite=None; Secure; HttpOnly`
     );
     res.send(result2);
   } catch (error) {
