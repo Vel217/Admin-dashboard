@@ -149,31 +149,32 @@ app.post("/signIn", async (req, res) => {
   const sessionID = uuidv4();
   session[sessionID] = email;
 
-  // try {
-  const result = await query(
-    `SELECT EXISTS(SELECT * FROM usersList WHERE email = '${email}') AS result;`
-  );
-  console.log(result, "1");
+  try {
+    const result = await query(
+      `SELECT EXISTS(SELECT * FROM usersList WHERE email = '${email}') AS result;`
+    );
+    console.log(result, "1");
 
-  if (result === 0) {
-    return res.send({ email: "invalid" });
+    if (result === 0) {
+      return res.send({ email: "invalid" });
+    }
+    const result2 = await query(
+      `SELECT * FROM usersList WHERE email = '${email}'`
+    );
+    console.log(result2, "2");
+    if (result2[0].password !== password) {
+      return res.send({ password: "invalid" });
+    }
+    console.log(session, "s");
+    res.set(
+      "Set-Cookie",
+      `session=${sessionID};Domain=herokuapp.com;Path=/; SameSite=None; Secure; HttpOnly`
+    );
+
+    res.send(result2);
+  } catch (error) {
+    res.status(500).send(error);
   }
-  const result2 = await query(
-    `SELECT * FROM usersList WHERE email = '${email}'`
-  );
-  console.log(result2, "2");
-  if (result2[0].password !== password) {
-    return res.send({ password: "invalid" });
-  }
-  console.log(session, "s");
-  res.set(
-    "Set-Cookie",
-    `session=${sessionID};Domain=herokuapp.com/;Path=/; SameSite=None; Secure; HttpOnly`
-  );
-  res.send(result2);
-  // } catch (error) {
-  //   res.status(500).send(error);
-  // }
 });
 
 app.get("*", (req, res) => {
