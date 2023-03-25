@@ -118,7 +118,7 @@ app.post("/signUp", async (req, res) => {
       `SELECT * FROM usersList WHERE email = '${email}';`
     );
     if (result.length > 0) {
-      return res.send({ email: 1 });
+      return res.status(400).send({ email: 1 });
     } else {
       const result2 = await query(
         `INSERT INTO usersList (firstname, lastname, email, password) VALUES ('${fName}', '${lName}', '${email}', '${[
