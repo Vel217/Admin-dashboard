@@ -174,7 +174,7 @@ app.post("/signIn", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile("index.html", { root: "../users_app/build" });
+  res.sendFile("index.html", { root: "./users_app/build" });
 });
 
 app.listen(process.env.PORT, () => {
