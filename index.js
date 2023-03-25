@@ -155,7 +155,7 @@ app.post("/signIn", async (req, res) => {
     );
     console.log(result, "1");
 
-    if (result == 0) {
+    if (result[0].result == 0) {
       return res.status(203).send({ email: "invalid" });
     }
     const result2 = await query(
