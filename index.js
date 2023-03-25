@@ -157,21 +157,23 @@ app.post("/signIn", async (req, res) => {
 
     if (result === 0) {
       return res.send({ email: "invalid" });
-    }
-    const result2 = await query(
-      `SELECT * FROM usersList WHERE email = '${email}'`
-    );
-    console.log(result2, "2");
-    if (result2[0].password !== password) {
-      return res.send({ password: "invalid" });
-    }
-    console.log(session, "s");
-    res.set(
-      "Set-Cookie",
-      `session=${sessionID};Domain=task-4-rodina.herokuapp.com;Path=/; SameSite=None; Secure;`
-    );
+    } else {
+      const result2 = await query(
+        `SELECT * FROM usersList WHERE email = '${email}'`
+      );
+      console.log(result2, "2");
+      if (result2[0].password !== password) {
+        return res.send({ password: "invalid" });
+      } else {
+        console.log(session, "s");
+        res.set(
+          "Set-Cookie",
+          `session=${sessionID};Domain=task-4-rodina.herokuapp.com;Path=/; SameSite=None; Secure;`
+        );
 
-    res.send(result2);
+        res.send(result2);
+      }
+    }
   } catch (error) {
     res.status(500).send(error);
   }
