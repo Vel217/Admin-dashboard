@@ -14,7 +14,7 @@ const App = () => {
         <Route path="/" element={<SignIn />} />
         <Route path="/reg" element={<Registration />} />
         <Route element={<ProtectRouters />}>
-          <Route path="/list/*" element={<UserList />} />
+          <Route path="/Users-list/*" element={<UserList />} />
         </Route>
       </Routes>
     </BrowserRouter>

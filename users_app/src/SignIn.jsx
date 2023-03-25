@@ -18,7 +18,7 @@ function SignIn() {
       .then((res) => res.json())
       .then((data) => {
         if (data.length > 0 && data[0].is_blocked === 0) {
-          navigate(`/list/${data[0].user_id}`);
+          navigate(`/Users-list/${data[0].user_id}`);
 
           updateActivity(data[0].user_id).then((data) => console.log(data));
         }
