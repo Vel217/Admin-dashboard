@@ -3,6 +3,9 @@ import mysql from "mysql2";
 import cors from "cors";
 import crypto from "crypto";
 import { v4 as uuidv4 } from "uuid";
+import { config } from "dotenv";
+
+config();
 
 let session = {};
 
