@@ -19,10 +19,11 @@ const connection = mysql.createConnection({
 
 const app = express();
 app.use(express.json());
+app.use(express.static("./users_app/build"));
 
 app.use(
   cors({
-    origin: "/",
+    origin: process.env.REACT_APP_FRONTEND_URL,
     credentials: true,
   })
 );

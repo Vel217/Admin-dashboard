@@ -1,5 +1,5 @@
 export const getlist = async () => {
-  const url = `http://localhost:5001/list`;
+  const url = "/list";
   const response = await fetch(url, {
     method: "GET",
 
@@ -9,7 +9,7 @@ export const getlist = async () => {
 };
 
 export const signUp = async (fname, lname, email, password) => {
-  const url = "http://localhost:5001/signUp";
+  const url = "/signUp";
   const data = {
     firstname: fname,
     lastname: lname,
