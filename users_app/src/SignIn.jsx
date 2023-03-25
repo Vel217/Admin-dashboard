@@ -17,6 +17,7 @@ function SignIn() {
     signIn(email, password)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.length > 0 && data[0].is_blocked === 0) {
           navigate(`/Users-list/${data[0].user_id}`);
 
