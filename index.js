@@ -156,14 +156,14 @@ app.post("/signIn", async (req, res) => {
     console.log(result, "1");
 
     if (result == 0) {
-      return res.send({ email: "invalid" });
+      return res.status(203).send({ email: "invalid" });
     }
     const result2 = await query(
       `SELECT * FROM usersList WHERE email = '${email}'`
     );
     console.log(result2, "2");
     if (result2[0].password !== password) {
-      return res.send({ password: "invalid" });
+      return res.status(205).send({ password: "invalid" });
     }
     console.log(session, "s");
     res.set(
