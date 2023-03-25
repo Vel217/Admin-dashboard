@@ -168,7 +168,7 @@ app.post("/signIn", async (req, res) => {
     console.log(session, "s");
     res.set(
       "Set-Cookie",
-      `session=${sessionID};Domain=herokuapp.com;Path=/; SameSite=None; Secure; HttpOnly`
+      `session=${sessionID};Domain=task-4-rodina.herokuapp.com;Path=/; SameSite=None; Secure; HttpOnly`
     );
 
     res.send(result2);
