@@ -10,10 +10,10 @@ config();
 let session = {};
 
 const connection = mysql.createConnection({
-  host: DB_HOST,
-  user: DB_USER,
-  password: DB_PASS,
-  database: DB_NAME,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   insecureAuth: true,
 });
 
@@ -177,7 +177,7 @@ app.get("*", (req, res) => {
   res.sendFile("index.html", { root: "../users_app/build" });
 });
 
-app.listen(5001, () => {
+app.listen(process.env.PORT, () => {
   connection.connect((err) => {
     console.log(err);
   });
