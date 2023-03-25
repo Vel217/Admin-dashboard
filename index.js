@@ -168,7 +168,7 @@ app.post("/signIn", async (req, res) => {
   console.log(session, "s");
   res.set(
     "Set-Cookie",
-    `session=${sessionID};Domain=${process.env.REACT_APP_FRONTEND_URL};Path=/; SameSite=None; Secure; HttpOnly`
+    `session=${sessionID};Domain=herokuapp.com/;Path=/; SameSite=None; Secure; HttpOnly`
   );
   res.send(result2);
   // } catch (error) {
