@@ -78,16 +78,6 @@ export default function UserList() {
         navigate("/");
       }
     });
-    // document.cookie = "session= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-    // document.cookie   session=${sessionID};Domain=localhost;Path=/; SameSite=None; Secure;
-    // function delete_cookie( name, path, domain ) {
-    //   if( get_cookie( name ) ) {
-    //     document.cookie = name + "=" +
-    //       ((path) ? ";path="+path:"")+
-    //       ((domain)?";domain="+domain:"") +
-    //       ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
-    //   }
-    // }
   };
 
   useLayoutEffect(() => {
@@ -269,7 +259,7 @@ export default function UserList() {
                             : "text-gray-900"
                         )}
                       >
-                        {person.user_id}
+                        {(person.user_id - 1) / 10 + 1}
                       </td>
                       <td
                         className={classNames(
@@ -302,7 +292,7 @@ export default function UserList() {
                               : "bg-red-100 text-red-800"
                           )}
                         >
-                          {person.is_blocked === 0 ? "active" : "block"}
+                          {person.is_blocked === 0 ? "active" : "blocked"}
                         </span>
                       </td>
                     </tr>

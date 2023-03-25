@@ -17,8 +17,6 @@ function SignIn() {
     signIn(email, password)
       .then((res) => res.json())
       .then((data) => {
-        // setEmail("");
-        // setPassword("");
         if (data.length > 0 && data[0].is_blocked === 0) {
           navigate(`/list/${data[0].user_id}`);
 
@@ -31,7 +29,7 @@ function SignIn() {
           setInvPassword(true);
         }
 
-        if (data[0].is_blocked == 1) {
+        if (data[0]?.is_blocked == 1) {
           setIsBlocked(true);
         }
       });
@@ -67,7 +65,7 @@ function SignIn() {
           <Button title="SignIn" onClick={click} />
         </div>
         {invPassword && (
-          <p className="text-red-800"> your password incorrect</p>
+          <p className="text-red-800"> incorrect email or password </p>
         )}
         {isBlocked && (
           <p className="text-red-800">

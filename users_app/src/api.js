@@ -1,26 +1,8 @@
-// export const signIn = async (email, password) => {
-//   const url = `localhost:5001`;
-//   const data = {
-//     email,
-//     password,
-//   };
-//   const response = await fetch(url, {
-//     method: "POST",
-//     mode: "cors",
-//     credentials: "include",
-//     headers: {
-//       "content-type": "application/json",
-//     },
-//     body: JSON.stringify(data),
-//   });
-//   return response;
-// };
-
 export const getlist = async () => {
   const url = `http://localhost:5001/list`;
   const response = await fetch(url, {
     method: "GET",
-    //
+
     credentials: "include",
   });
   return response;
@@ -46,7 +28,7 @@ export const signUp = async (fname, lname, email, password) => {
 };
 
 export const signIn = async (email, password) => {
-  const url = "http://localhost:5001/signIn";
+  const url = "/signIn";
   const data = {
     email: email,
     password: password,
@@ -64,7 +46,7 @@ export const signIn = async (email, password) => {
 };
 
 export const block = async (id) => {
-  const url = "http://localhost:5001/block";
+  const url = "/block";
 
   const response = await fetch(url, {
     method: "POST",
@@ -79,7 +61,7 @@ export const block = async (id) => {
 };
 
 export const unblock = async (id) => {
-  const url = "http://localhost:5001/unblock";
+  const url = "/unblock";
 
   const response = await fetch(url, {
     method: "POST",
@@ -94,7 +76,7 @@ export const unblock = async (id) => {
 };
 
 export const deleteId = async (id) => {
-  const url = "http://localhost:5001/delete";
+  const url = "/delete";
 
   const response = await fetch(url, {
     method: "POST",
@@ -109,14 +91,14 @@ export const deleteId = async (id) => {
 };
 
 export const updateActivity = async (id) => {
-  const url = "http://localhost:5001/update";
+  const url = "/update";
   const data = {
     number: id,
   };
 
   const response = await fetch(url, {
     method: "POST",
-    // mode: "cors",
+
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
@@ -128,7 +110,7 @@ export const updateActivity = async (id) => {
 };
 
 export const logout = async () => {
-  const url = "http://localhost:5001/logout";
+  const url = "/logout";
   const response = await fetch(url, {
     method: "POST",
     headers: {

@@ -2,14 +2,14 @@
 
 # dependencies
 node_modules
+vscode
 /.pnp
 .pnp.js
 
 # testing
 /coverage
 
-# production
-/build
+# productiongit 
 
 # misc
 .DS_Store

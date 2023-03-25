@@ -1,11 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 const useAuth = () => {
-  if (document.cookie.split("=")[0] === "session") {
-    return true;
-  } else {
-    return false;
-  }
+  return document.cookie.split("=")[0] === "session";
 };
 
 function ProtectRouters() {
