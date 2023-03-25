@@ -163,7 +163,7 @@ app.post("/signIn", async (req, res) => {
     );
     console.log(result2, "2");
     if (result2[0].password !== password) {
-      return res.status(205).send({ password: "invalid" });
+      return res.status(400).send({ password: "invalid" });
     }
     console.log(session, "s");
     res.set(
