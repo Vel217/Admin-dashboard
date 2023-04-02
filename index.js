@@ -4,8 +4,8 @@ import cors from "cors";
 import crypto from "crypto";
 import { v4 as uuidv4 } from "uuid";
 import { config } from "dotenv";
-import path from "path";
-import * as url from "url";
+// import path from "path";
+// import * as url from "url";
 
 config();
 
@@ -177,16 +177,16 @@ app.post("/signIn", async (req, res) => {
   }
 });
 
-// app.get("*", (req, res) => {
-//   res.sendFile("index.html", { root: "./users_app/build" });
-// });
 app.get("*", (req, res) => {
-  res.sendFile(
-    path.join(
-      url.fileURLToPath(import.meta.url),
-      "../users_app/build/index.html"
-    )
-  );
+  res.sendFile("index.html", { root: "./users_app/build" });
 });
+// app.get("*", (req, res) => {
+//   res.sendFile(
+//     path.join(
+//       url.fileURLToPath(import.meta.url),
+//       "../users_app/build/index.html"
+//     )
+//   );
+// });
 
 app.listen(process.env.PORT, () => {});
