@@ -189,8 +189,4 @@ app.get("*", (req, res) => {
   );
 });
 
-app.listen(process.env.PORT, () => {
-  connection.connect((err) => {
-    console.log(err);
-  });
-});
+app.listen(process.env.PORT, () => {});
