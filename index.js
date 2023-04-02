@@ -121,9 +121,7 @@ app.post("/signUp", async (req, res) => {
       return res.status(400).send({ email: 1 });
     } else {
       const result2 = await query(
-        `INSERT INTO usersList (firstname, lastname, email, password) VALUES ('${fName}', '${lName}', '${email}', '${[
-          password,
-        ]}');`
+        `INSERT INTO usersList (firstname, lastname, email, password) VALUES ('${fName}', '${lName}', '${email}', '${password}');`
       );
 
       res.send(result2);
@@ -153,7 +151,6 @@ app.post("/signIn", async (req, res) => {
     const result = await query(
       `SELECT EXISTS(SELECT * FROM usersList WHERE email = '${email}') AS result;`
     );
-    console.log(result, "1");
 
     if (result[0].result == 0) {
       return res.status(203).send({ email: "invalid" });
@@ -161,11 +158,11 @@ app.post("/signIn", async (req, res) => {
     const result2 = await query(
       `SELECT * FROM usersList WHERE email = '${email}'`
     );
-    console.log(result2, "2");
+
     if (result2[0].password !== password) {
       return res.status(400).send({ password: "invalid" });
     }
-    console.log(session, "s");
+
     res.set(
       "Set-Cookie",
       `session=${sessionID};Domain=task-4-rodina.herokuapp.com;Path=/; SameSite=None; Secure;`
